@@ -1,19 +1,45 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from './components/Button/Button';
-import './App.css';
 
-const lorem = 'Excepteur velit pariatur est minim commodo incididunt aute duis aliquip aute eu officia veniam sint.'
-function App(props) {
-  return (
-    <div className="App" style={{ color: 'tomato' }}>{lorem}<br />
-      <Button title="Ok" bgColor="green"  />                       
-      <Button title="Cancel" bgColor="tomato" />
-      <Button title="Clear" bgColor="orange" style={{color:'green', fontWeight:900}}  />
-      <Button title="Test" onclickbutton={(qqch)=>{
-        alert(qqch);
-      }}/>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state={count:0};
+  }
+  componentDidMount(){
+    fetch('http://desorbaix.alexandre.free.fr/phpRest/users/')
+      .then(e=>e.json(),e=>[])
+      .then(o=>{
+        console.log(o);
+        this.setState({count:o.length})
+        return o;
+      })
+  }
+  remove(){
+    this.setState({count:this.state.count-1});
+    console.log('remove');
+  }
+  render() {
+    console.log('render APP')
+    return (
+      <div>
+        La valeur de count est  { this.state.count }<br/>
+        <Button title="Add" onclickbutton={()=>{
+          this.setState({count:this.state.count+1});
+          console.log('add');
+
+        }}/>
+        <Button bgColor='tomato' title="remove" onclickbutton={()=>{this.remove()}}/>
+      </div>
+    );
+  }
 }
+
+
+App.propTypes = {
+
+};
+
 
 export default App;
