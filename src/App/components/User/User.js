@@ -3,14 +3,17 @@ import PropTypes from 'prop-types';
 import styles from './User.module.scss';
 
 const User = (props) => (
-  <div className={styles.User} data-testid="User">
+  <div onClick={()=>props.onclickuser()} id={"DOMID"+props.user.id} className={styles.User} style={props.style} data-testid="User">
       id:{props.user.id}<br/>
       password:{props.user.password}<br/>
       login:{props.user.login}<br/>
   </div>
 );
 
-User.propTypes = {};
+User.propTypes = {
+  onclickuser:PropTypes.func,
+  user:PropTypes.object
+};
 
 User.defaultProps = {};
 
