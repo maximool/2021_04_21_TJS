@@ -5,14 +5,14 @@
   "testLibrary": "Testing Library",
   "component": {
     "default": {
-      "path": "/src/App/components",
+      "path": "src/App/components",
       "withStyle": true,
       "withTest": true,
       "withStory": false,
       "withLazy": false
     },
     "nudeComponent": {
-      "path": "/src/App/components",
+      "path": "src/App/components",
       "withStyle": false,
       "withTest": false,
       "withStory": false,
