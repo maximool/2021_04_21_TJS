@@ -8,11 +8,13 @@ const FormUser = (props) => (
     login:<input type="text" placeholder="nom" onChange={e=>{
       props.onchangevalue({...props.user,login:e.target.value})
     }} value={props.user.login} /><br/>
-    password:<input type="text" placeholder="mot de passe" value={props.user.password}/><br/>
+    password:<input type="text" onChange={e=>{
+      props.onchangevalue({...props.user,password:e.target.value})
+    }} placeholder="mot de passe" value={props.user.password}/><br/>
   </form>
 );
 
-FormUser.propTypes = {user:PropTypes.object};
+FormUser.propTypes = {user:PropTypes.object, onchangevalue:PropTypes.func.isRequired};
 
 FormUser.defaultProps = {};
 
