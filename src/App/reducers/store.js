@@ -1,3 +1,4 @@
+import {createStore} from 'redux';
 const initialState = {
     messages: [],
     tchatUsers: []
@@ -11,9 +12,14 @@ function tchatReducer(state = initialState, action) {
         default: return state;
     }
 }
-let state=initialState;
-console.log(state);
-state=tchatReducer(state,{type:'ADD_MESSAGES',values:[{login:'alex'},{login:'josé'}]})
-console.log(state);
-state=tchatReducer(state,{type:'ADD_MESSAGES',values:[{login:'pascal'},{login:'dominique'}]})
-console.log(state);
+
+const store=createStore(tchatReducer);
+export default store;
+store.subscribe(()=>{
+    console.log(store.getState());
+});
+
+store.dispatch({type:'ADD_USERS',values:[{login:'alex'},{login:'boby'}]});
+store.dispatch({type:'ADD_USERS',values:[{login:'pascal'},{login:'dominique'}]});
+store.dispatch({type:'ADD_USERS',values:[{login:'pierre yves'},{login:'j\'ean'}]});
+
