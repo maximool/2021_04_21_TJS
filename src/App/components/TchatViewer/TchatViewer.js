@@ -16,7 +16,11 @@ const TchatViewer = (props) => {
           return jsonArr;
         }
         let last = lastId;
-        jsonArr.forEach(e => { if (last < e.id) last = e.id })
+        jsonArr.forEach(e => { 
+          if (last < e.id) {
+            last = e.id;
+          } 
+        })
         if (lastId < last) {
           setlastId(last);
         }
