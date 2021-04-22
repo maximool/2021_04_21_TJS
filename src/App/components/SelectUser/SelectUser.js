@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './SelectUser.scss';
+import style from './SelectUser.module.scss';
 
-const SelectUser = (props) => (
-  <select className="SelectUser" data-testid="SelectUser" value={props.selectedId} onChange={(evt)=>props.onuserselectionchange(parseInt(evt.target.value))}>
-    {props.users.map((e,i)=><option value={e.id}>{`${e.id}:${e.login}`}</option>)}
+const SelectUser = (props) => {
+  console.log(props);
+  return(
+  <select className={style.SelectUser} data-testid="SelectUser" value={props.selectedId} onChange={(evt)=>props.onuserselectionchange(parseInt(evt.target.value))}>
+    {props.children}
+    {props.users.map((e,i)=><option key={'userselect-'+i} value={e.id}>{`${e.id}:${e.login}`}</option>)}
   </select>
-);
+);}
 
 SelectUser.propTypes = {
   users:PropTypes.array.isRequired,
