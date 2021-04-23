@@ -4,9 +4,12 @@ export const initialState = {
     messages: [],
     tchatUsers: [],
     destinataireId:-1,
-    connectedUser:null
+    connectedUser:null,
+    modal:{isOpen:false,children:null}
 }
 export const TCHAT_ACTIONS=Object.freeze({
+    OPEN_MODAL:'OPEN_MODAL',
+    CLOSE_MODAL:'CLOSE_MODAL',
     ADD_USERS:'ADD_USERS',
     ADD_USER:'ADD_USER',
     ADD_MESSAGES:'ADD_MESSAGES',
@@ -60,6 +63,8 @@ function tchatReducer(state = initialState, action) {
         case TCHAT_ACTIONS.SELECT_DEST:return {...state,destinataireId:action.value};
         case TCHAT_ACTIONS.CONNECT_USER:return {...state,connectedUser:action.value};
         case TCHAT_ACTIONS.DISCONNECT_USER:return {...state,connectedUser:null};
+        case TCHAT_ACTIONS.OPEN_MODAL:return {...state,modal:{isOpen:true,children:action.value}};
+        case TCHAT_ACTIONS.CLOSE_MODAL:return {...state,modal:{isOpen:false,children:null}};
         default: return state;
     }
 }
