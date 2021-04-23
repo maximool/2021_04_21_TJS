@@ -5,7 +5,8 @@ import TchatViewer from '../TchatViewer/TchatViewer';
 import TchatUsers from '../TchatUsers/TchatUsers';
 import TchatWriter from '../TchatWriter/TchatWriter';
 import { REST_ADR } from '../../config/config';
-import store from '../../reducers/store';
+import store, { TCHAT_ACTIONS } from '../../reducers/store';
+import Button from '@material-ui/core/Button'
 const initialState = { messages: [], tchatUsers: [] }
 class Tchat extends Component {
   constructor(props) {
@@ -23,6 +24,9 @@ class Tchat extends Component {
   render(props) {
     return (
       <div className={style.Tchat}>
+      <h1>Tchat<Button variant="contained" color="primary" onClick={(e)=>store.dispatch({type:TCHAT_ACTIONS.DISCONNECT_USER})}>
+        Disconnect
+      </Button></h1>
         <div className={style.horizontal}>
           <TchatViewer users={this.state.tchatUsers}></TchatViewer>
           <TchatUsers users={this.state.tchatUsers}></TchatUsers>
