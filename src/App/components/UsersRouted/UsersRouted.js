@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './UsersRouted.module.scss';
-import store, { initialState } from '../../reducers/store';
+import store, { initialState, TCHAT_ACTIONS } from '../../reducers/store';
 import { Avatar } from '@material-ui/core';
 import Search from '../Search/Search';
+import TchatUsers from '../TchatUsers/TchatUsers';
+import TchatUser from '../TchatUser/TchatUser';
 const UsersRouted = (props) => {
   const [usersList, setusersList] = useState(initialState.tchatUsers);
   const [users, setusers] = useState(initialState.tchatUsers);
@@ -26,7 +28,9 @@ const UsersRouted = (props) => {
         <Search onChange={(text) => { setfindStr(text) }} />
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
           {users.map((e, i) =>
-            <div key={'user-'+i} style={{ flex: 1 }}>
+            <div key={'user-'+i} style={{ flex: 1 }} onClick={()=>{
+              store.dispatch({type:TCHAT_ACTIONS.OPEN_MODAL,value:<TchatUser user={e}  />})
+            }}>
               <Avatar src={e.img} /><br />
               {e.login}
             </div>

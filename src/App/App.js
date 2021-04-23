@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import UsersRouted from './components/UsersRouted/UsersRouted';
 import UserRouted from './components/UserRouted/UserRouted';
+import Modal from './components/Modal/Modal';
 
 
 
@@ -31,7 +32,7 @@ class App extends React.Component {
   }
   render() {
     console.log('render APP', this.state)
-    return (
+    return (<>
       <div className="App">
         <Router>
           <AppBar position="fixed" color="primary">
@@ -73,6 +74,8 @@ class App extends React.Component {
           </div>
         </Router>
       </div>
+      <Modal />
+    </>
     );
   }
 }
