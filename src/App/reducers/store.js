@@ -2,13 +2,15 @@ import {combineReducers, createStore} from 'redux';
 import { REST_ADR } from '../config/config';
 export const initialState = {
     messages: [],
-    tchatUsers: []
+    tchatUsers: [],
+    destinataireId:-1
 }
 export const TCHAT_ACTIONS=Object.freeze({
     ADD_USERS:'ADD_USERS',
     ADD_USER:'ADD_USER',
     ADD_MESSAGES:'ADD_MESSAGES',
-    SEND_MESSAGE:'SEND_MESSAGE'
+    SEND_MESSAGE:'SEND_MESSAGE',
+    SELECT_DEST:'SELECT_DEST'
 });
 const TCHAT_PRIVATE_ACTIONS=Object.freeze({
     INIT:'@@redux/INIT',
@@ -51,8 +53,8 @@ function tchatReducer(state = initialState, action) {
             return state;
         case TCHAT_ACTIONS.ADD_USER:return {...state,tchatUsers:[...state.tchatUsers,action.value]};
         case TCHAT_ACTIONS.ADD_USERS:return {...state,tchatUsers:[...state.tchatUsers,...action.values]};
-        case TCHAT_ACTIONS.ADD_MESSAGES:
-            return {...state,messages:[...state.messages,...action.values]};
+        case TCHAT_ACTIONS.ADD_MESSAGES:return {...state,messages:[...state.messages,...action.values]};
+        case TCHAT_ACTIONS.SELECT_DEST:return {...state,destinataireId:action.value};
         default: return state;
     }
 }
